@@ -1,0 +1,22 @@
+﻿name: Project 07 - Docker CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t jennyoma-cloud-api:ci .
+
+      - name: Run automated tests
+        run: docker run --rm --entrypoint python jennyoma-cloud-api:ci -m pytest -q
