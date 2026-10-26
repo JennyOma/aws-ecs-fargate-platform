@@ -3,9 +3,14 @@
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app.py test_app.py .
+RUN pip install --no-cache-dir -r requirements.txt \
+    && groupadd --system appgroup \
+    && useradd --system --gid appgroup --home-dir /app appuser
+
+COPY --chown=appuser:appgroup app.py test_app.py ./
+
+USER appuser
 
 EXPOSE 8000
 

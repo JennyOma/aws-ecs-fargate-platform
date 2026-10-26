@@ -1,4 +1,4 @@
-resource "aws_ecs_cluster" "main" {
+﻿resource "aws_ecs_cluster" "main" {
   name = "project07-cluster"
 
   tags = {
@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "api" {
   container_definitions = jsonencode([
     {
       name      = "jennyoma-api"
-      image     = "${aws_ecr_repository.api.repository_url}:v1"
+      image     = "${aws_ecr_repository.api.repository_url}:v3"
       essential = true
 
       portMappings = [
@@ -94,3 +94,5 @@ resource "aws_ecs_service" "api" {
     Project = "Project07"
   }
 }
+
+

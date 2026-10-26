@@ -19,4 +19,5 @@ jobs:
         run: docker build -t jennyoma-cloud-api:ci .
 
       - name: Run automated tests
-        run: docker run --rm --entrypoint python jennyoma-cloud-api:ci -m pytest -q
+        run: docker run --rm --entrypoint python jennyoma-cloud-api:ci -m pytest -q -p no:cacheprovider
+
